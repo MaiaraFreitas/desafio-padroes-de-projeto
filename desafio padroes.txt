@@ -1,0 +1,46 @@
+// Classe Singleton que representa uma configuração de aplicativo
+public class AppConfig {
+    private static AppConfig instance; // Instância única da classe
+    private String appName;
+    private String appVersion;
+
+    // Construtor privado para evitar instanciação direta
+    private AppConfig() {
+        // Inicialização das variáveis de configuração
+        appName = "Minha Aplicação";
+        appVersion = "1.0";
+    }
+
+    // Método público para obter a instância única da classe
+    public static AppConfig getInstance() {
+        if (instance == null) {
+            // Se a instância ainda não foi criada, cria uma nova
+            instance = new AppConfig();
+        }
+        return instance;
+    }
+
+    // Métodos de acesso aos dados de configuração
+    public String getAppName() {
+        return appName;
+    }
+
+    public String getAppVersion() {
+        return appVersion;
+    }
+}
+
+// Classe de exemplo que utiliza a configuração do aplicativo
+public class App {
+    public static void main(String[] args) {
+        AppConfig config1 = AppConfig.getInstance();
+        AppConfig config2 = AppConfig.getInstance();
+
+        // As duas instâncias são iguais, pois o Singleton garante que só haja uma instância
+        System.out.println(config1 == config2); // true
+
+        // Acesso aos dados de configuração
+        System.out.println(config1.getAppName()); // Minha Aplicação
+        System.out.println(config1.getAppVersion()); // 1.0
+    }
+}
